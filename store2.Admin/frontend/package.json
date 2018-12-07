@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@azure/ms-rest-js": "^1.2.2",
     "bulma": "^0.7.2",
     "final-form": "^4.11.0",
     "react": "^16.6.3",
@@ -15,7 +16,8 @@
     "start": "react-scripts-ts start",
     "build": "react-scripts-ts build",
     "test": "react-scripts-ts test --env=jsdom",
-    "eject": "react-scripts-ts eject"
+    "eject": "react-scripts-ts eject",
+    "generate": "autorest --input-file=swagger.json --output-folder=src/api --typescript"
   },
   "devDependencies": {
     "@types/jest": "^23.3.10",
@@ -24,6 +26,7 @@
     "@types/react-dom": "^16.0.11",
     "@types/react-redux": "^6.0.10",
     "@types/react-router-redux": "^5.0.16",
+    "autorest": "^2.0.4283",
     "react-router-redux": "^4.0.8",
     "typescript": "^3.2.1"
   }

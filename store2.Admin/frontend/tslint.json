@@ -4,6 +4,7 @@
     "exclude": [
       "config/**/*.js",
       "node_modules/**/*.ts",
+      "src/api/**/*.ts",
       "coverage/lcov-report/*.js"
     ]
   }
