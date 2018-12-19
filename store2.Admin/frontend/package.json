@@ -10,6 +10,7 @@
     "react-dom": "^16.6.3",
     "react-final-form": "^4.0.2",
     "react-redux": "^6.0.0",
+    "react-router-redux": "^4.0.8",
     "react-scripts-ts": "3.1.0"
   },
   "scripts": {
@@ -17,7 +18,9 @@
     "build": "react-scripts-ts build",
     "test": "react-scripts-ts test --env=jsdom",
     "eject": "react-scripts-ts eject",
-    "generate": "autorest --input-file=swagger.json --output-folder=src/api --typescript"
+    "update-api-json": "jsurl --insecure https://localhost:5001/swagger/v1/swagger.json > swagger.json",
+    "generate": "autorest --input-file=swagger.json --output-folder=src/api --typescript",
+    "update-client": "npm run update-api-json && npm run generate"
   },
   "devDependencies": {
     "@types/jest": "^23.3.10",
@@ -27,7 +30,7 @@
     "@types/react-redux": "^6.0.10",
     "@types/react-router-redux": "^5.0.16",
     "autorest": "^2.0.4283",
-    "react-router-redux": "^4.0.8",
+    "jsurl-cli": "^1.0.4",
     "typescript": "^3.2.1"
   }
 }
