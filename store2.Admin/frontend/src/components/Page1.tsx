@@ -1,18 +1,20 @@
 import * as React from 'react';
 
-export interface Page1StateProps {
+export interface StateProps {
     login: string;
+    count: number;
 }
 
-export interface Page1DispatchProps {}
+export interface DispatchProps {}
 
-interface Page1Props extends Page1StateProps, Page1DispatchProps {}
-
-export class Page1 extends React.Component<Page1Props> {
+export class Page1 extends React.Component<StateProps & DispatchProps> {
     render() {
+        const { login, count } = this.props;
+
         return <>
-            <div>page 1</div>
-            <div>login: {this.props.login}</div>
+            <h1>page 1</h1>
+            <p>login: {login}</p>
+            <p>counter: {count}</p>
         </>;
     }
 }

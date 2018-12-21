@@ -1,30 +1,33 @@
-import { connect } from 'react-redux';
-import { Page1, Page1StateProps, Page1DispatchProps } from '../components/Page1';
-import { RouteComponentProps } from 'react-router-dom';
-import { State } from '../reducers';
 import { Dispatch } from 'redux';
+import { connect } from 'react-redux';
+import { RouteComponentProps } from 'react-router-dom';
 
-interface Page1RouteProps {
+import { Page1, StateProps, DispatchProps } from '../components/Page1';
+import { State } from '../reducers';
+
+interface RouteProps {
     login?: string;
 }
 
-interface OwnProps extends RouteComponentProps<Page1RouteProps> {}
+interface OwnProps extends RouteComponentProps<RouteProps> {
 
-function mapStateToProps(state: State, ownProps: OwnProps): Page1StateProps {
+}
+
+function mapStateToProps(state: State, ownProps: OwnProps): StateProps {
     const { login } = ownProps.match.params;
 
     if (!login) {
         throw new Error();
     }
 
-    return { login };
+    return { login, count: state.page1.count };
 }
 
-function mapDispatchToProps(dispatch: Dispatch): Page1DispatchProps{
+function mapDispatchToProps(dispatch: Dispatch): DispatchProps{
     return {};
 }  
 
-export const Page1Container = connect<Page1StateProps, Page1DispatchProps, OwnProps>(
+export const Page1Container = connect<StateProps, DispatchProps, OwnProps, State>(
     mapStateToProps,
     mapDispatchToProps
 )(Page1);
