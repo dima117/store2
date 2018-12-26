@@ -63,11 +63,13 @@ export type TEST_RESPONSE_ERROR = typeof TEST_RESPONSE_ERROR;
 
 export interface TestResponseErrorAction {
     type: TEST_RESPONSE_ERROR;
+    msg: string
 }
 
-export function testResponseError(): TestResponseErrorAction {
+export function testResponseError(msg: string): TestResponseErrorAction {
     return {
-        type: TEST_RESPONSE_ERROR
+        type: TEST_RESPONSE_ERROR,
+        msg
     };
 }
 

@@ -1,3 +1,4 @@
+using System;
 using Microsoft.AspNetCore.Mvc;
 
 namespace store2.Admin.Controllers
@@ -16,8 +17,8 @@ namespace store2.Admin.Controllers
         {
             return new[]
             {
-                new Xxx { Name = "test", Surname = "xxx" },
-                new Xxx { Name = "test2", Surname = "xxx2" },
+                new Xxx { Name = "test", Surname = Guid.NewGuid().ToString() },
+                new Xxx { Name = "test2", Surname = Guid.NewGuid().ToString() },
             };
         }
     }

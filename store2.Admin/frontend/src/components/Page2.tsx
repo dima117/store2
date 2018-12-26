@@ -1,35 +1,47 @@
 import * as React from 'react';
 
-import { MyAPI, MyAPIModels } from '../api/lib/myAPI';
+import { MyAPIModels } from '../api/lib/myAPI';
 
-interface Page2State {
+export interface StateProps {
   items: MyAPIModels.Xxx[];
+  error?: string;
 }
 
-export class Page2 extends React.Component<{}, Page2State> {
-  state: Page2State = {
-    items: []
-  };
+export interface DispatchProps {
+  onInit: () => void;
+}
 
+export class Page2 extends React.Component<StateProps & DispatchProps> {
   public componentDidMount() {
-    const client = new MyAPI({ baseUri: 'https://localhost:5001' });
+    this.props.onInit();
+  }
 
-    client.doStuff().then(res => {
-      this.setState({ items: res });
-    });
+  renderError() {
+    const { error } = this.props;
+
+    return error ? <div>{error}</div> : null;
+  }
+
+  renderList() {
+    const { items } = this.props;
+
+    if (!items.length) return null;
+
+    return <ol>
+      {items.map((item, index) => (
+        <li key={index}>
+          {item.name} {item.surname}
+        </li>
+      ))}
+    </ol>;
   }
 
   render() {
     return (
       <div className="App">
         <h1>page 2</h1>
-        <ol>
-          {this.state.items.map((item, index) => (
-            <li key={index}>
-              {index}. {item.name} {item.surname}
-            </li>
-          ))}
-        </ol>
+        {this.renderError()}
+        {this.renderList()}
       </div>
     );
   }
