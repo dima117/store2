@@ -7,7 +7,7 @@ import { Action } from '../actions';
 import { rootEpic } from '../epics';
 
 export function initStore(): Store<State, Action> {
-    const epicMiddleware = createEpicMiddleware();
+    const epicMiddleware = createEpicMiddleware<Action, Action, State>();
     let store: Store<State, Action>;
 
     if (process.env.NODE_ENV === 'production') {

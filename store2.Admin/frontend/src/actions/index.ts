@@ -1,3 +1,5 @@
+import { MyAPIModels } from '../api/lib/myAPI';
+
 export const TEST_INCREMENT = 'TEST_INCREMENT';
 export type TEST_INCREMENT = typeof TEST_INCREMENT;
 
@@ -40,16 +42,32 @@ export function testRequest(): TestRequestAction {
         type: TEST_REQUEST
     };
 }
+
 export const TEST_RESPONSE = 'TEST_RESPONSE';
 export type TEST_RESPONSE = typeof TEST_RESPONSE;
 
 export interface TestResponseAction {
     type: TEST_RESPONSE;
+    items: MyAPIModels.Xxx[];
 }
 
-export function testResponse(): TestResponseAction {
+export function testResponse(items: MyAPIModels.Xxx[]): TestResponseAction {
     return {
-        type: TEST_RESPONSE
+        type: TEST_RESPONSE,
+        items
+    };
+}
+
+export const TEST_RESPONSE_ERROR = 'TEST_RESPONSE_ERROR';
+export type TEST_RESPONSE_ERROR = typeof TEST_RESPONSE_ERROR;
+
+export interface TestResponseErrorAction {
+    type: TEST_RESPONSE_ERROR;
+}
+
+export function testResponseError(): TestResponseErrorAction {
+    return {
+        type: TEST_RESPONSE_ERROR
     };
 }
 
@@ -57,4 +75,5 @@ export type Action =
     TestIncrementAction | 
     TestDecrementAction | 
     TestRequestAction | 
-    TestResponseAction;
+    TestResponseAction |
+    TestResponseErrorAction;
