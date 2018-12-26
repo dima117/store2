@@ -28,4 +28,33 @@ export function decrement(count: number): TestDecrementAction {
     };
 }
 
-export type Action = TestIncrementAction | TestDecrementAction;
+export const TEST_REQUEST = 'TEST_REQUEST';
+export type TEST_REQUEST = typeof TEST_REQUEST;
+
+export interface TestRequestAction {
+    type: TEST_REQUEST;
+}
+
+export function testRequest(): TestRequestAction {
+    return {
+        type: TEST_REQUEST
+    };
+}
+export const TEST_RESPONSE = 'TEST_RESPONSE';
+export type TEST_RESPONSE = typeof TEST_RESPONSE;
+
+export interface TestResponseAction {
+    type: TEST_RESPONSE;
+}
+
+export function testResponse(): TestResponseAction {
+    return {
+        type: TEST_RESPONSE
+    };
+}
+
+export type Action = 
+    TestIncrementAction | 
+    TestDecrementAction | 
+    TestRequestAction | 
+    TestResponseAction;
