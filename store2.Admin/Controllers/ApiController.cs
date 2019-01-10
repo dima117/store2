@@ -1,6 +1,8 @@
 using System;
 using System.Linq;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using store2.Admin.Model;
 using store2.Domain;
 using store2.Domain.Model;
 
@@ -16,16 +18,18 @@ namespace store2.Admin.Controllers
     public class ApiController : Controller
     {
         public StoreDbContext Database { get; }
+        public IMapper Mapper { get; }
 
-        public ApiController(StoreDbContext database)
+        public ApiController(StoreDbContext database, IMapper mapper)
         {
             Database = database;
+            Mapper = mapper;
         }
 
         [HttpGet("pages")]
-        public Page[] GetPages()
+        public PageDto[] GetPages()
         {
-            return Database.Pages.ToArray();
+            return Database.Pages.Select(Mapper.Map<Page, PageDto>).ToArray();
         }
 
         [HttpGet("stuff")]

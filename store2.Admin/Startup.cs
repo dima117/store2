@@ -1,9 +1,13 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
+using store2.Admin.Model;
 using store2.Domain;
+using store2.Domain.Model;
 using Swashbuckle.AspNetCore.Swagger;
 
 
@@ -25,6 +29,9 @@ namespace store2.Admin
             // database
             string cstring = Configuration.GetConnectionString("default");
             services.AddStoreDbContext(cstring);
+
+            // mapping
+            AddMapper(services);
 
             services.AddCors();
             services.AddMvc();
@@ -56,6 +63,14 @@ namespace store2.Admin
             app.UseSwagger();
 
             app.Run(async (context) => { await context.Response.WriteAsync("Hello World!"); });
+        }
+
+        private void AddMapper(IServiceCollection services)
+        {
+            var config = new MapperConfiguration(cfg => { cfg.CreateMap<Page, PageDto>(); });
+            var mapper = config.CreateMapper();
+
+            services.Add(ServiceDescriptor.Singleton(mapper));
         }
     }
 }
