@@ -20,6 +20,29 @@ class MyAPI extends MyAPIContext {
 
   /**
    * @param [options] The optional parameters
+   * @returns Promise<Models.GetPagesResponse>
+   */
+  getPages(options?: msRest.RequestOptionsBase): Promise<Models.GetPagesResponse>;
+  /**
+   * @param callback The callback
+   */
+  getPages(callback: msRest.ServiceCallback<Models.PageDto[]>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
+  getPages(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.PageDto[]>): void;
+  getPages(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.PageDto[]>, callback?: msRest.ServiceCallback<Models.PageDto[]>): Promise<Models.GetPagesResponse> {
+    return this.sendOperationRequest(
+      {
+        options
+      },
+      getPagesOperationSpec,
+      callback) as Promise<Models.GetPagesResponse>;
+  }
+
+  /**
+   * @param [options] The optional parameters
    * @returns Promise<Models.DoStuffResponse>
    */
   doStuff(options?: msRest.RequestOptionsBase): Promise<Models.DoStuffResponse>;
@@ -44,6 +67,29 @@ class MyAPI extends MyAPIContext {
 
 // Operation Specifications
 const serializer = new msRest.Serializer(Mappers);
+const getPagesOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "api/pages",
+  responses: {
+    200: {
+      bodyMapper: {
+        serializedName: "parsedResponse",
+        type: {
+          name: "Sequence",
+          element: {
+            type: {
+              name: "Composite",
+              className: "PageDto"
+            }
+          }
+        }
+      }
+    },
+    default: {}
+  },
+  serializer
+};
+
 const doStuffOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "api/stuff",

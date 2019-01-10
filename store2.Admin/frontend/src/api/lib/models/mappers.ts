@@ -7,6 +7,44 @@
 import * as msRest from "@azure/ms-rest-js";
 
 
+export const PageDto: msRest.CompositeMapper = {
+  serializedName: "PageDto",
+  type: {
+    name: "Composite",
+    className: "PageDto",
+    modelProperties: {
+      id: {
+        required: true,
+        serializedName: "id",
+        type: {
+          name: "Uuid"
+        }
+      },
+      code: {
+        required: true,
+        serializedName: "code",
+        type: {
+          name: "String"
+        }
+      },
+      title: {
+        required: true,
+        serializedName: "title",
+        type: {
+          name: "String"
+        }
+      },
+      body: {
+        required: true,
+        serializedName: "body",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
 export const Xxx: msRest.CompositeMapper = {
   serializedName: "Xxx",
   type: {

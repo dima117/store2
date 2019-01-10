@@ -10,6 +10,29 @@ import * as msRest from "@azure/ms-rest-js";
 
 /**
  * @interface
+ * An interface representing PageDto.
+ */
+export interface PageDto {
+  /**
+   * @member {string} id
+   */
+  id: string;
+  /**
+   * @member {string} code
+   */
+  code: string;
+  /**
+   * @member {string} title
+   */
+  title: string;
+  /**
+   * @member {string} body
+   */
+  body: string;
+}
+
+/**
+ * @interface
  * An interface representing Xxx.
  */
 export interface Xxx {
@@ -34,6 +57,25 @@ export interface MyAPIOptions extends ServiceClientOptions {
    */
   baseUri?: string;
 }
+
+/**
+ * Contains response data for the getPages operation.
+ */
+export type GetPagesResponse = Array<PageDto> & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: PageDto[];
+    };
+};
 
 /**
  * Contains response data for the doStuff operation.
