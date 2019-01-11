@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Helmet } from 'react-helmet';
 
 export interface StateProps {
     login: string;
@@ -30,6 +31,10 @@ export class Page1 extends React.Component<StateProps & DispatchProps> {
         const { login, count } = this.props;
 
         return <>
+            <Helmet title={`p1 - ${login}`}>
+                <meta charSet="utf-8" />
+                <meta name="description" content="Test page with login and counter" />
+            </Helmet>
             <h1>page 1</h1>
             <p>login: {login}</p>
             <p>counter: {count}</p>
