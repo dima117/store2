@@ -10,6 +10,44 @@ import * as msRest from "@azure/ms-rest-js";
 
 /**
  * @interface
+ * An interface representing PageListItemDto.
+ */
+export interface PageListItemDto {
+  /**
+   * @member {string} id
+   */
+  id: string;
+  /**
+   * @member {string} code
+   */
+  code: string;
+  /**
+   * @member {string} title
+   */
+  title: string;
+}
+
+/**
+ * @interface
+ * An interface representing PageInput.
+ */
+export interface PageInput {
+  /**
+   * @member {string} code
+   */
+  code: string;
+  /**
+   * @member {string} title
+   */
+  title: string;
+  /**
+   * @member {string} body
+   */
+  body: string;
+}
+
+/**
+ * @interface
  * An interface representing PageDto.
  */
 export interface PageDto {
@@ -33,21 +71,6 @@ export interface PageDto {
 
 /**
  * @interface
- * An interface representing Xxx.
- */
-export interface Xxx {
-  /**
-   * @member {string} [name]
-   */
-  name?: string;
-  /**
-   * @member {string} [surname]
-   */
-  surname?: string;
-}
-
-/**
- * @interface
  * An interface representing MyAPIOptions.
  * @extends ServiceClientOptions
  */
@@ -59,9 +82,37 @@ export interface MyAPIOptions extends ServiceClientOptions {
 }
 
 /**
+ * @interface
+ * An interface representing MyAPIAddPageOptionalParams.
+ * Optional Parameters.
+ *
+ * @extends RequestOptionsBase
+ */
+export interface MyAPIAddPageOptionalParams extends msRest.RequestOptionsBase {
+  /**
+   * @member {PageInput} [input]
+   */
+  input?: PageInput;
+}
+
+/**
+ * @interface
+ * An interface representing MyAPIUpdatePageOptionalParams.
+ * Optional Parameters.
+ *
+ * @extends RequestOptionsBase
+ */
+export interface MyAPIUpdatePageOptionalParams extends msRest.RequestOptionsBase {
+  /**
+   * @member {PageInput} [input]
+   */
+  input?: PageInput;
+}
+
+/**
  * Contains response data for the getPages operation.
  */
-export type GetPagesResponse = Array<PageDto> & {
+export type GetPagesResponse = Array<PageListItemDto> & {
   /**
    * The underlying HTTP response.
    */
@@ -73,14 +124,14 @@ export type GetPagesResponse = Array<PageDto> & {
       /**
        * The response body as parsed JSON or XML
        */
-      parsedBody: PageDto[];
+      parsedBody: PageListItemDto[];
     };
 };
 
 /**
- * Contains response data for the doStuff operation.
+ * Contains response data for the addPage operation.
  */
-export type DoStuffResponse = Array<Xxx> & {
+export type AddPageResponse = PageDto & {
   /**
    * The underlying HTTP response.
    */
@@ -92,6 +143,44 @@ export type DoStuffResponse = Array<Xxx> & {
       /**
        * The response body as parsed JSON or XML
        */
-      parsedBody: Xxx[];
+      parsedBody: PageDto;
+    };
+};
+
+/**
+ * Contains response data for the getPage operation.
+ */
+export type GetPageResponse = PageDto & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: PageDto;
+    };
+};
+
+/**
+ * Contains response data for the updatePage operation.
+ */
+export type UpdatePageResponse = PageDto & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: PageDto;
     };
 };

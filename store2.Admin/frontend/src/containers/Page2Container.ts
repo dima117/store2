@@ -7,7 +7,7 @@ import { testRequest } from '../actions';
 
 function mapStateToProps(state: State): StateProps {
     return { 
-        items: state.page2.items,
+        pages: state.page2.pages,
         error: state.page2.error
     };
 }

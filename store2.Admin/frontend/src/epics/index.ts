@@ -15,8 +15,8 @@ const testEpic = (action$: ActionsObservable<Action>, state$: StateObservable<St
     mergeMap((a: Action) => {
         console.log(state$.value);
 
-        return from(deps.client.doStuff()).pipe(
-            map((items: MyAPIModels.DoStuffResponse) => testResponse(items)),
+        return from(deps.client.getPages()).pipe(
+            map((items: MyAPIModels.GetPagesResponse) => testResponse(items)),
             catchError((err: Error) => of(testResponseError(err.message)))
         );           
     })

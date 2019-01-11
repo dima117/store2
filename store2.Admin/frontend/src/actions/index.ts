@@ -48,13 +48,13 @@ export type TEST_RESPONSE = typeof TEST_RESPONSE;
 
 export interface TestResponseAction {
     type: TEST_RESPONSE;
-    items: MyAPIModels.Xxx[];
+    pages: MyAPIModels.PageListItemDto[];
 }
 
-export function testResponse(items: MyAPIModels.Xxx[]): TestResponseAction {
+export function testResponse(pages: MyAPIModels.PageListItemDto[]): TestResponseAction {
     return {
         type: TEST_RESPONSE,
-        items
+        pages
     };
 }
 

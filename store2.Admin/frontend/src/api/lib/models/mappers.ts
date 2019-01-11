@@ -7,6 +7,77 @@
 import * as msRest from "@azure/ms-rest-js";
 
 
+export const PageListItemDto: msRest.CompositeMapper = {
+  serializedName: "PageListItemDto",
+  type: {
+    name: "Composite",
+    className: "PageListItemDto",
+    modelProperties: {
+      id: {
+        required: true,
+        serializedName: "id",
+        type: {
+          name: "Uuid"
+        }
+      },
+      code: {
+        required: true,
+        serializedName: "code",
+        type: {
+          name: "String"
+        }
+      },
+      title: {
+        required: true,
+        serializedName: "title",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
+export const PageInput: msRest.CompositeMapper = {
+  serializedName: "PageInput",
+  type: {
+    name: "Composite",
+    className: "PageInput",
+    modelProperties: {
+      code: {
+        required: true,
+        serializedName: "code",
+        constraints: {
+          MaxLength: 64,
+          MinLength: 0,
+          Pattern: /^[a-z0-9-]+$/
+        },
+        type: {
+          name: "String"
+        }
+      },
+      title: {
+        required: true,
+        serializedName: "title",
+        constraints: {
+          MaxLength: 255,
+          MinLength: 0
+        },
+        type: {
+          name: "String"
+        }
+      },
+      body: {
+        required: true,
+        serializedName: "body",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
 export const PageDto: msRest.CompositeMapper = {
   serializedName: "PageDto",
   type: {
@@ -37,28 +108,6 @@ export const PageDto: msRest.CompositeMapper = {
       body: {
         required: true,
         serializedName: "body",
-        type: {
-          name: "String"
-        }
-      }
-    }
-  }
-};
-
-export const Xxx: msRest.CompositeMapper = {
-  serializedName: "Xxx",
-  type: {
-    name: "Composite",
-    className: "Xxx",
-    modelProperties: {
-      name: {
-        serializedName: "name",
-        type: {
-          name: "String"
-        }
-      },
-      surname: {
-        serializedName: "surname",
         type: {
           name: "String"
         }

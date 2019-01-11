@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet';
 import { MyAPIModels } from '../api/lib/myAPI';
 
 export interface StateProps {
-  items: MyAPIModels.Xxx[];
+  pages: MyAPIModels.PageListItemDto[];
   error?: string;
 }
 
@@ -24,15 +24,15 @@ export class Page2 extends React.Component<StateProps & DispatchProps> {
   }
 
   renderList() {
-    const { items } = this.props;
+    const { pages } = this.props;
 
-    if (!items.length) return null;
+    if (!pages.length) return null;
 
     return (
       <ol>
-        {items.map((item, index) => (
+        {pages.map((page, index) => (
           <li key={index}>
-            {item.name} {item.surname}
+            {page.title} ({page.code})
           </li>
         ))}
       </ol>

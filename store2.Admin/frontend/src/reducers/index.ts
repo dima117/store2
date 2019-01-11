@@ -7,7 +7,7 @@ export interface Page1State {
 }
 
 export interface Page2State {
-    items: MyAPIModels.Xxx[];
+    pages: MyAPIModels.PageListItemDto[];
     error?: string;
 }
 
@@ -31,20 +31,20 @@ function page1(state: Page1State = { count: 0 }, action: Action): Page1State {
     }
 }
 
-function page2(state: Page2State = { items: [] }, action: Action): Page2State {
+function page2(state: Page2State = { pages: [] }, action: Action): Page2State {
     switch(action.type) {
         case TEST_REQUEST:
             return {
-                items: [],
+                pages: [],
                 error: undefined
             };
         case TEST_RESPONSE:
             return {
-                items: action.items
+                pages: action.pages
             };
         case TEST_RESPONSE_ERROR:
             return {
-                items: [],
+                pages: [],
                 error: action.msg
             };
         default:
