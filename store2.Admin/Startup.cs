@@ -50,7 +50,6 @@ namespace store2.Admin
         {
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
                 app.UseCors(cfg => cfg.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
                 app.UseSwaggerUI(cfg =>
                 {

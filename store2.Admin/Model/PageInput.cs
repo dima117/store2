@@ -3,15 +3,12 @@ using System.ComponentModel.DataAnnotations;
 
 namespace store2.Admin.Model
 {
-    public class PageDto
+    public class PageInput
     {
-        [Required]
-        public Guid Id { get; set; }
-
-        [Required]
+        [Required, StringLength(64), RegularExpression("^[a-z0-9-]+$")]
         public string Code { get; set; }
 
-        [Required]
+        [Required, StringLength(255)]
         public string Title { get; set; }
 
         [Required]

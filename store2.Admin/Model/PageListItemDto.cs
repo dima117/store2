@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace store2.Admin.Model
 {
-    public class PageDto
+    public class PageListItemDto
     {
         [Required]
         public Guid Id { get; set; }
@@ -13,8 +13,5 @@ namespace store2.Admin.Model
 
         [Required]
         public string Title { get; set; }
-
-        [Required]
-        public string Body { get; set; }
     }
 }
