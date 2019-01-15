@@ -1,5 +1,6 @@
 import * as React from 'react';
 
+import { Layout } from './components/Layout/Layout';
 import { Page1Container } from './containers/Page1Container';
 import { Page2Container } from './containers/Page2Container';
 import { initStore } from './services/store';
@@ -15,8 +16,10 @@ class App extends React.Component {
       <Provider store={store}>
         <BrowserRouter>
           <div className="App">
-            <Route path="/p1/:login" component={Page1Container} />
-            <Route path="/p2" component={Page2Container} />
+            <Layout>
+              <Route path="/p1/:login" component={Page1Container} />
+              <Route path="/p2" component={Page2Container} />
+            </Layout>
           </div>
         </BrowserRouter>
       </Provider>

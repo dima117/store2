@@ -1,0 +1,15 @@
+.Layout {
+    padding-top: 60px;
+}
+
+.Layout-ItemText {
+    padding-left: 8px !important;
+}
+
+.Layout-MenuSubheader {
+    line-height: 32px !important;
+}
+
+.Layout-Menu {
+    min-width: 210px !important;
+}
