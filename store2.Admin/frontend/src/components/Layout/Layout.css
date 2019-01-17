@@ -1,15 +1,23 @@
 .Layout {
-    padding-top: 60px;
+    padding: 60px 20px 20px;
 }
 
-.Layout-ItemText {
-    padding-left: 8px !important;
+.Layout-MenuItem {
+    padding-left: 24px;
 }
 
 .Layout-MenuSubheader {
-    line-height: 32px !important;
+    line-height: 32px;
+    text-transform: uppercase;
+    font-size: 11px;
 }
 
-.Layout-Menu {
-    min-width: 210px !important;
+.Layout-MenuSection {
+    min-width: 210px;
+    margin-top: 16px;
+}
+
+.Layout-MenuButton {
+    margin-left: -12px;
+    margin-right: 20px;
 }

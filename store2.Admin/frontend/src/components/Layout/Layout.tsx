@@ -86,8 +86,8 @@ export class Layout extends React.Component<{}, LayoutState> {
   toggleMenuClose = () => this.setState({ isOpen: false });
 
   renderMenuItem = ({href, text}: MenuItem, index: number) => {
-    return <ListItem component={MenuItemLink} key={index} button href={href}>
-        <ListItemText className={cnLayout('ItemText')} primary={text} />
+    return <ListItem component={MenuItemLink} className={cnLayout('MenuItem')} key={index} button href={href}>
+        <ListItemText primary={text} />
     </ListItem>;
   }
 
@@ -96,13 +96,13 @@ export class Layout extends React.Component<{}, LayoutState> {
         {title}
     </ListSubheader>;
 
-    return <List key={index} className={cnLayout('Menu')} subheader={subheader} onClick={this.toggleMenuClose}>
+    return <List key={index} className={cnLayout('MenuSection')} subheader={subheader} onClick={this.toggleMenuClose}>
         {items.map(this.renderMenuItem)}
     </List>;
   }
 
   renderMenu = () => {
-    return <SwipeableDrawer open={this.state.isOpen} onOpen={this.toggleMenuOpen} onClose={this.toggleMenuClose}>
+    return <SwipeableDrawer className={cnLayout('Menu')} open={this.state.isOpen} onOpen={this.toggleMenuOpen} onClose={this.toggleMenuClose}>
         {MENU.map(this.renderMenuGroup)}
     </SwipeableDrawer>;
   }
@@ -110,7 +110,7 @@ export class Layout extends React.Component<{}, LayoutState> {
   renderHeader = () => {
     return <AppBar position="fixed">
         <Toolbar>
-            <IconButton color="inherit" onClick={this.toggleMenuOpen}>
+            <IconButton className={cnLayout('MenuButton')} color="inherit" onClick={this.toggleMenuOpen}>
                 <MenuIcon />
             </IconButton>
             <Typography variant="h6" color="inherit">
