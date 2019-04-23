@@ -1,3 +1,5 @@
+import { LocationChangedAction  } from 'tmp-react-router';
+
 import { MyAPIModels } from '../api/lib/myAPI';
 
 export const TEST_INCREMENT = 'TEST_INCREMENT';
@@ -27,19 +29,6 @@ export function decrement(count: number): TestDecrementAction {
     return {
         type: TEST_DECREMENT,
         count: count
-    };
-}
-
-export const TEST_REQUEST = 'TEST_REQUEST';
-export type TEST_REQUEST = typeof TEST_REQUEST;
-
-export interface TestRequestAction {
-    type: TEST_REQUEST;
-}
-
-export function testRequest(): TestRequestAction {
-    return {
-        type: TEST_REQUEST
     };
 }
 
@@ -76,6 +65,6 @@ export function testResponseError(msg: string): TestResponseErrorAction {
 export type Action = 
     TestIncrementAction | 
     TestDecrementAction | 
-    TestRequestAction | 
     TestResponseAction |
-    TestResponseErrorAction;
+    TestResponseErrorAction |
+    LocationChangedAction;

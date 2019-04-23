@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Link } from 'react-router-dom'
+import { Link } from 'tmp-react-router';
 import {
   AppBar,
   Toolbar,
@@ -24,7 +24,7 @@ const cnLayout = cn('Layout');
 function MenuItemLink(props: ListItemProps) {
     const { href = '', className } = props;
 
-    return <Link to={href} className={className}>
+    return <Link href={href} className={className}>
         {props.children}
     </Link>;
 }
