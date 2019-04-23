@@ -6,19 +6,14 @@ import { Page1, StateProps, DispatchProps } from '../components/Page1';
 import { State } from '../reducers';
 import { increment, decrement } from '../actions';
 
-interface RouteProps {
-    login?: string;
-}
+function mapStateToProps(state: State): StateProps {
+    if (!state.location) {
+        throw new Error('invalid location');
+    }
 
-interface OwnProps extends RouteComponentProps<RouteProps> {
-
-}
-
-function mapStateToProps(state: State, ownProps: OwnProps): StateProps {
-    const { login } = ownProps.match.params;
-
+    const { login } = state.location.params as any;
     if (!login) {
-        throw new Error();
+        throw new Error('invalid login');
     }
 
     return { login, count: state.page1.count };
@@ -31,7 +26,7 @@ function mapDispatchToProps(dispatch: Dispatch): DispatchProps{
     };
 }  
 
-export const Page1Container = connect<StateProps, DispatchProps, OwnProps, State>(
+export const Page1Container = connect<StateProps, DispatchProps, {}, State>(
     mapStateToProps,
     mapDispatchToProps
 )(Page1);

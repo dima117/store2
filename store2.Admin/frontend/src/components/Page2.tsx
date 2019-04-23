@@ -8,14 +8,7 @@ export interface StateProps {
   error?: string;
 }
 
-export interface DispatchProps {
-  onInit: () => void;
-}
-
-export class Page2 extends React.Component<StateProps & DispatchProps> {
-  public componentDidMount() {
-    this.props.onInit();
-  }
+export class Page2 extends React.Component<StateProps> {
 
   renderError() {
     const { error } = this.props;

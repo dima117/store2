@@ -1,9 +1,7 @@
-import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 
-import { Page2, StateProps, DispatchProps } from '../components/Page2';
+import { Page2, StateProps } from '../components/Page2';
 import { State } from '../reducers';
-import { testRequest } from '../actions';
 
 function mapStateToProps(state: State): StateProps {
     return { 
@@ -12,13 +10,6 @@ function mapStateToProps(state: State): StateProps {
     };
 }
 
-function mapDispatchToProps(dispatch: Dispatch): DispatchProps{
-    return {
-        onInit: () => dispatch(testRequest())
-    };
-}  
-
-export const Page2Container = connect<StateProps, DispatchProps, {}, State>(
-    mapStateToProps,
-    mapDispatchToProps
+export const Page2Container = connect<StateProps, {}, {}, State>(
+    mapStateToProps
 )(Page2);

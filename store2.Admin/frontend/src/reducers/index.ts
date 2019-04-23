@@ -1,5 +1,19 @@
 import { combineReducers, Reducer } from 'redux';
-import { Action, TEST_INCREMENT, TEST_DECREMENT, TEST_REQUEST, TEST_RESPONSE, TEST_RESPONSE_ERROR } from '../actions';
+import { History } from 'history';
+import {
+    RouterConfig,
+    RouterLocation,
+    LOCATION_CHANGED,
+    createRoutingReducer
+} from 'tmp-react-router';
+
+import {
+    Action,
+    TEST_INCREMENT,
+    TEST_DECREMENT,
+    TEST_RESPONSE,
+    TEST_RESPONSE_ERROR
+} from '../actions';
 import { MyAPIModels } from '../api/lib/myAPI';
 
 export interface Page1State {
@@ -12,12 +26,13 @@ export interface Page2State {
 }
 
 export interface State {
-    page1: Page1State;    
-    page2: Page2State;    
+    location: RouterLocation;
+    page1: Page1State;
+    page2: Page2State;
 }
 
 function page1(state: Page1State = { count: 0 }, action: Action): Page1State {
-    switch(action.type) {
+    switch (action.type) {
         case TEST_INCREMENT:
             return {
                 count: state.count + action.count
@@ -32,11 +47,10 @@ function page1(state: Page1State = { count: 0 }, action: Action): Page1State {
 }
 
 function page2(state: Page2State = { pages: [] }, action: Action): Page2State {
-    switch(action.type) {
-        case TEST_REQUEST:
+    switch (action.type) {
+        case LOCATION_CHANGED:
             return {
-                pages: [],
-                error: undefined
+                pages: []
             };
         case TEST_RESPONSE:
             return {
@@ -52,6 +66,12 @@ function page2(state: Page2State = { pages: [] }, action: Action): Page2State {
     }
 }
 
-export const rootReducer: Reducer<State, Action> = combineReducers({ 
-    page1, page2
-});
+export const createRootReducer = (
+    config: RouterConfig,
+    history: History
+): Reducer<State, Action> =>
+    combineReducers({
+        location: createRoutingReducer(config, history),
+        page1,
+        page2
+    });
